@@ -2,22 +2,31 @@ package com.informatorio.jblog.controller;
 
 import java.util.List;
 
-import com.informatorio.jblog.models.User;
-import com.informatorio.jblog.repository.UserRepository;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import com.informatorio.jblog.services.UserService;
+import com.informatorio.jblog.models.User;
 
 @RestController
 @RequestMapping("api/v1")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUser(@PathVariable(value="id") Long id) {
+        User user = userService.getUser(id);
+        return ResponseEntity.ok().body(user);
     }
 }
