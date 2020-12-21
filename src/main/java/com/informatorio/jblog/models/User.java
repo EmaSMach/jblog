@@ -2,6 +2,8 @@ package com.informatorio.jblog.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="users")
@@ -11,6 +13,7 @@ public class User {
     private Long id;
     private String name;
 
+    @JsonIgnore
     public Long getId() {
         return id;
     }
