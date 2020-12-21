@@ -27,4 +27,9 @@ public class UserService implements IUser{
         // findById retorna un Optional, por lo tanto arrojamos un error en caso de no encontrar el objeto
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
+
+    // @PostMapping("/users")
+    public User createUser(User user) {
+        return userRepository.save(user);
+  }
 }
