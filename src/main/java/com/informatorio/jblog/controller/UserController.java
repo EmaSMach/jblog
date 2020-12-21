@@ -38,4 +38,10 @@ public class UserController {
     public User createUser(@RequestBody User user){
         return userService.createUser(user);
     }
+
+    @PostMapping("/users/{id}/delete")
+    @ResponseStatus( HttpStatus.NO_CONTENT )
+    public void deleteUserById(@PathVariable(value="id") Long id) {
+        userService.deleteUser(id);
+    }
 }

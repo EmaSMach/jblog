@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+
 import com.informatorio.jblog.repository.UserRepository;
 import com.informatorio.jblog.models.User;
 
@@ -29,7 +31,19 @@ public class UserService implements IUser{
     }
 
     // @PostMapping("/users")
+    @Override
     public User createUser(User user) {
         return userRepository.save(user);
-  }
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        try{
+            userRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new UserNotFoundException(id);
+        }
+    }
+
 }

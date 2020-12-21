@@ -13,7 +13,7 @@ public class User {
     private Long id;
     private String name;
 
-    @JsonIgnore
+    // @JsonIgnore // uncomment on final version
     public Long getId() {
         return id;
     }
