@@ -46,4 +46,12 @@ public class UserService implements IUser{
             throw new UserNotFoundException(id);
         }
     }
+
+    @Override
+    public User updateUser(Long id, User userDetails) {
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        user.setName(userDetails.getName());
+        final User updatedUser = userRepository.save(user);
+        return updatedUser;
+    }
 }

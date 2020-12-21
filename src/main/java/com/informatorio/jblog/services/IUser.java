@@ -9,5 +9,6 @@ public interface IUser {
     public abstract List<User> getAllUsers();
     public abstract User getUser(Long id);
     public abstract User createUser(User user);
-    public abstract void deleteUser(Long id); 
+    public abstract void deleteUser(Long id);
+    public abstract User updateUser(Long id, User userDetails);
 }
