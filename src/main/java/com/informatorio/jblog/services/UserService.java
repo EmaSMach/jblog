@@ -36,6 +36,7 @@ public class UserService implements IUser{
         return userRepository.save(user);
     }
 
+    // borramos un usuario por su id si existe
     @Override
     public void deleteUser(Long id) {
         try{
@@ -45,5 +46,4 @@ public class UserService implements IUser{
             throw new UserNotFoundException(id);
         }
     }
-
 }
